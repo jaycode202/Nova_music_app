@@ -29,7 +29,9 @@ jobs:
 
       - name: Build APK
         run: |
-          flet build apk --android-permissions android.permission.READ_EXTERNAL_STORAGE
+          # The -y flag tells Flet to automatically say YES to downloading the SDK
+          flet build apk -y --android-permissions android.permission.READ_EXTERNAL_STORAGE
+          
           
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
