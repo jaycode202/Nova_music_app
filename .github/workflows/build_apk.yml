@@ -33,8 +33,9 @@ jobs:
 
       - name: Build APK
         run: |
-          # Use 'python -m flet' and the short permission flag
+          # The -y flag is critical to prevent the EOF error by auto-accepting SDKs
           python -m flet build apk -y --permissions READ_EXTERNAL_STORAGE
+          
           
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
