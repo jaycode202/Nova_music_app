@@ -1,12 +1,16 @@
 name: Build Android APK
 on: [push]
 
+# This forces the runner to use the newer Node.js engine required in 2026
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # V4 is standard, but we'll ensure the runner is right
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -26,11 +30,11 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.4' # Matching the version Flet asked for earlier
+          flutter-version: '3.24.4'
 
       - name: Build APK
         run: |
-          # Added the -y flag again and simplified the command
+          # Use the -y flag to auto-accept SDK licenses
           flet build apk -y --android-permissions android.permission.READ_EXTERNAL_STORAGE
           
       - name: Upload APK Artifact
