@@ -1,0 +1,4 @@
+flet==0.82.2
+flet-audio==0.82.2
+mutagen>=1.47.0
+packaging>=23.2
